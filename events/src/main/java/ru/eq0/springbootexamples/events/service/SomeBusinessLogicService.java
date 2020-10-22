@@ -2,6 +2,7 @@ package ru.eq0.springbootexamples.events.service;
 
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import ru.eq0.springbootexamples.events.event.AnotherGenericEvent;
 import ru.eq0.springbootexamples.events.event.GenericEvent;
 import ru.eq0.springbootexamples.events.event.ShutdownEvent;
 
@@ -24,9 +25,12 @@ public class SomeBusinessLogicService {
 
     public void hello(String hello) {
         applicationEventPublisher.publishEvent(new GenericEvent<>(hello));
+        applicationEventPublisher.publishEvent(new AnotherGenericEvent<>(this, hello));
+
     }
 
     public void hello(BigInteger bigInteger) {
         applicationEventPublisher.publishEvent(new GenericEvent<>(bigInteger));
+
     }
 }
