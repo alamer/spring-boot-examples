@@ -1,6 +1,8 @@
 package ru.eq0.springbootexamples.events.listener;
 
+import lombok.SneakyThrows;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.eq0.springbootexamples.events.event.AnotherGenericEvent;
 import ru.eq0.springbootexamples.events.event.GenericEvent;
@@ -23,7 +25,11 @@ public class GenericEventListener {
 
 
     @EventListener
+    @Async
+    @SneakyThrows
     public void listenString(AnotherGenericEvent<String> stringEvent) {
         System.out.println("Another Generic event with string: " + stringEvent.getObj());
+        Thread.sleep(10000);
+        System.out.println("Async event complete");
     }
 }
